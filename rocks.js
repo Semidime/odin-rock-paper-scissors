@@ -6,19 +6,19 @@ function getComputerChoice() {
     let RandomNum = Math.ceil(Math.random()*3);
     console.log(RandomNum); /* debugging */
 
-    let rPS;
+    let compRPS;
 
     if (RandomNum === 1) {
-        rPS = "Rock"
+        compRPS = "Rock"
     } else if (RandomNum === 2) {
-        rPS = "Paper"
+        compRPS = "Paper"
     } else {
-        rPS = "Scissors"
+        compRPS = "Scissors"
     }
 
-    console.log(rPS); /* debugging */
+    console.log(compRPS); /* debugging */
 
-    return rPS
+    return compRPS
 }
 
 /* function to prompt user to input selection,
@@ -42,14 +42,32 @@ function getUserChoice() {
     console.log(trimmedInput); /* debugging */
 
     /* check if user has entered "Rock", "Paper" or "Scissors"
-    if any other answer provided generate pop-up and ask them to choose again */
+    If it has entered a valid weapon, assigns trimmedInput to userRPS*/
+
+    let userRPS
 
     if (trimmedInput === "Rock" || trimmedInput === "Paper" || trimmedInput === "Scissors" ) {
-        return trimmedInput;
+        userRPS = trimmedInput;
+
+    /* if user input is not a valid weapon, randomly select a weapon for the user
+    using same process as applied under getComputerChoice function */
+
     } else { 
-        alert(`Sorry, "${rawInput}" is not a valid weapon!`)
+        let RandomNum = Math.ceil(Math.random()*3);
+        console.log(RandomNum); /* debugging */
+    
+        if (RandomNum === 1) {
+            userRPS = "Rock"
+        } else if (RandomNum === 2) {
+            userRPS = "Paper"
+        } else {
+            userRPS = "Scissors"
+        }
+        console.log(userRPS);
+        alert(`Sorry, "${rawInput}" is not a valid weapon! ${userRPS} has been selected for you.`)
     }
 
+    return userRPS
 }
 
 /* playRound function.  requires two parameters
