@@ -22,10 +22,11 @@ function getComputerChoice() {
 }
 
 /* function to prompt user to input selection,
-input will be case insensitive, will return prompt if the
-input is not "rock" "paper" or "scissors" */
+input will be case insensitive and return a trimmed string value, if the
+input is not "Rock" "Paper" or "Scissors" no value will be returned and 
+a message will be displayed */
 function getUserChoice() {
-    let rawInput = prompt("Please choose your weapon!");
+    let rawInput = prompt('Please choose your weapon!');
 
     console.log(rawInput); /* debugging */
 
@@ -35,10 +36,19 @@ function getUserChoice() {
 
     console.log(capitalizedInput); /* debugging */
 
-    /* check if user has entered Rocks, Paper or Scissors
-    if any other answer provided generate error and ask them to choose again */
+    /* Trim input */
+    let trimmedInput = capitalizedInput.trim()
 
+    console.log(trimmedInput); /* debugging */
 
+    /* check if user has entered "Rock", "Paper" or "Scissors"
+    if any other answer provided generate pop-up and ask them to choose again */
+
+    if (trimmedInput === "Rock" || trimmedInput === "Paper" || trimmedInput === "Scissors" ) {
+        return trimmedInput;
+    } else { 
+        alert(`Sorry "${rawInput}" is not a valid weapon!`)
+    }
 
 }
 
