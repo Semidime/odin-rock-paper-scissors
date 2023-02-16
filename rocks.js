@@ -139,7 +139,70 @@ function playRound(computerSelection, playerSelection) {
     }
 
     /* retun result variable */
+/*     console.log(result); */
     return result;
 }
 
 /* playRound(getComputerChoice(), getUserChoice()) */;
+
+/* add a function called game()
+
+game() will:
+
+    declare compScore and userScore to record scores
+
+    use a loop to call the playRound() function [i] times;
+
+    declare compScore and userScore variables and 
+    assign values to these variables at end of each loop;
+
+    declare scoreUpdate variable to log a string to the console with current scores 
+    at the end of each loop;
+
+    log the result of each round in the console at the end of each loop;
+
+    declare finalScore variable after loop[i] and log the final 
+    result to the console after [i] loops;
+
+    game() will notify the user of the result at the end of the game
+ */
+
+
+function game() {
+/* declare variables*/
+    let compScore = 0;
+    let userScore = 0;
+    let finalScore;
+    let roundNum;
+    let roundResult;
+    let FinalResult;
+    let scoreUpdate = `Score Update - Round ${roundNum}: 
+                    The computer has ${compScore} points.  
+                    You have ${userScore} points.`;
+
+    for (let i = 0; i < 2; i++) {
+
+        roundResult = playRound(getComputerChoice(), getUserChoice());
+        console.log(roundResult); /* logs result to console */
+       
+        roundNum = i + 1;
+        console.log(roundNum); /* logs the round number that has just been complete */
+
+        /* updates compScore and userScore */
+        if (roundResult === "Win") {
+            userScore = userScore + 1;
+        } else if(roundResult === "Lose") {
+            compScore = compScore + 1;
+        } else {
+            userScore = userScore + 0.5;
+            compScore = compScore + 0.5;
+        }
+
+        console.log(userScore);
+        console.log(compScore);
+
+
+    }
+
+
+}
