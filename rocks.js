@@ -26,7 +26,7 @@ input will be case insensitive and return a trimmed string value, if the
 input is not "Rock" "Paper" or "Scissors" no value will be returned and 
 a message will be displayed */
 function getUserChoice() {
-    let rawInput = prompt('Please choose your weapon!');
+    let rawInput = prompt('Please choose your weapon! [Rock, Paper or Scissors]');
 
     /* console.log(rawInput);  *//* debugging */
 
@@ -49,7 +49,23 @@ function getUserChoice() {
     if (trimmedInput === "Rock" || trimmedInput === "Paper" || trimmedInput === "Scissors" ) {
         userRPS = trimmedInput;
 
-    /* if user input is not a valid weapon, randomly select a weapon for the user
+
+        /* If user has entered "Rocks"  
+        assign "Rock" to userRPS */
+    } else if (trimmedInput === "Rocks" ) {
+        userRPS = "Rock";
+       
+        /* If user has entered "Papers"  
+        assign "Paper" to userRPS */
+    } else if (trimmedInput === "Papers" ) {
+        userRPS = "Paper";
+
+        /* If user has entered "Scissor"  
+        assign "Scissors" to userRPS */
+    } else if (trimmedInput === "Scissor" ) {
+        userRPS = "Scissors";        
+
+        /* if user input is not a valid weapon, randomly select a weapon for the user
     using same process as applied under getComputerChoice function */
 
     } else { 
@@ -126,4 +142,4 @@ function playRound(computerSelection, playerSelection) {
     return result;
 }
 
-playRound(getComputerChoice(), getUserChoice());
+/* playRound(getComputerChoice(), getUserChoice()) */;
