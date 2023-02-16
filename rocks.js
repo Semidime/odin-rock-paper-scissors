@@ -183,11 +183,11 @@ function game() {
     /* requests user input to set number of rounds from 1 to 9 
     if user enters a value outside this range, or the input isNaN a second prompt is generated
     if user enters a value out of range again, the function terminates*/
-    totalRounds = parseInt(prompt("Please choose how many rounds you would like to play.  Enter a number between 1 and 9","1"),10)
+    totalRounds = parseInt(prompt("Please choose how many rounds you would like to play.  Enter a number between 1 and 9.","1"),10)
 
     if (totalRounds < 1 || totalRounds > 9 || isNaN(totalRounds)) {
 
-        totalRounds = parseInt(prompt(`Numbers can be hard. Would you like to try again? Please enter a number between 1 and 9`,`1`),10); 
+        totalRounds = parseInt(prompt("Numbers can be hard. Would you like to try again? Please enter a number between 1 and 9.","1"),10); 
       
         if (totalRounds < 1 || totalRounds > 9 || isNaN(totalRounds)) {
 
