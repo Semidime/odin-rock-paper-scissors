@@ -4,7 +4,7 @@ return a string containing "Rock" "Paper" or
 
 function getComputerChoice() {
     let RandomNum = Math.ceil(Math.random()*3);
-    console.log(RandomNum); /* debugging */
+   /*  console.log(RandomNum);  */
 
     let compRPS;
 
@@ -70,7 +70,7 @@ function getUserChoice() {
 
     } else { 
         let RandomNum = Math.ceil(Math.random()*3);
-        console.log(RandomNum); /* debugging */
+    /*     console.log(RandomNum); /* debugging */
     
         if (RandomNum === 1) {
             userRPS = "Rock"
@@ -149,22 +149,25 @@ function playRound(computerSelection, playerSelection) {
 
 game() will:
 
-    declare compScore and userScore to record scores
+    declare compScore and userScore variables to record scores;
+    
+    declare totalRounds and completedRounds variables to set the number of rounds 
+    and record progress;
 
+    declare roundResult and finalResult to record the outcome of each round / game;
+    
     use a loop to call the playRound() function [i] times;
 
-    declare compScore and userScore variables and 
-    assign values to these variables at end of each loop;
+    assign values to compScore and userScore at the end of each loop;
 
-    declare scoreUpdate variable to log a string to the console with current scores 
-    at the end of each loop;
+    notify the user of the current score between each round using an alert 
+    that references userScore and compScore;
 
-    log the result of each round in the console at the end of each loop;
+    log the roundResult of each round in the console at the end of each loop;
 
-    declare finalScore variable after loop[i] and log the final 
-    result to the console after [i] loops;
+    log the finalResult to the console after [i] loops;
 
-    game() will notify the user of the result at the end of the game
+    notify the user of the finalResult at the end of the game
  */
 
 
@@ -172,21 +175,18 @@ function game() {
 /* declare variables*/
     let compScore = 0;
     let userScore = 0;
-    let finalScore;
-    let roundNum;
+    let totalRounds = 2
+    let completedRounds;
     let roundResult;
-    let FinalResult;
-    let scoreUpdate = `Score Update - Round ${roundNum}: 
-                    The computer has ${compScore} points.  
-                    You have ${userScore} points.`;
+    let finalResult;
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < totalRounds; i++) {
 
         roundResult = playRound(getComputerChoice(), getUserChoice());
-        console.log(roundResult); /* logs result to console */
+        console.log(roundResult); /* logs result of round to console */
        
-        roundNum = i + 1;
-        console.log(roundNum); /* logs the round number that has just been complete */
+        completedRounds = i + 1;
+        console.log(completedRounds); /* logs the round number that has just been completed */
 
         /* updates compScore and userScore */
         if (roundResult === "Win") {
@@ -198,11 +198,36 @@ function game() {
             compScore = compScore + 0.5;
         }
 
+        /* log userScore and compScore */
         console.log(userScore);
         console.log(compScore);
 
+       /* if the last round was not the final round, provide a score update */
+        if (completedRounds < totalRounds) {
 
+            alert(`Score Update - Round ${completedRounds}:
+            
+                            The computer has ${compScore} points.  
+                            You have ${userScore} points.`);
+        }
+    }
+    
+    /* calculates final score after [i] rounds */
+    if (compScore === userScore) {
+        finalResult = "It was a draw!";
+    } else if (compScore > userScore) {
+        finalResult = "Bad luck - you lost!";        
+    } else {
+        finalResult = "Congratulations - you won!";
     }
 
+    console.log(finalResult); /* log finalResult */
+
+    alert(`FINAL SCORE:
+    
+                    The computer has ${compScore} points.  
+                    You have ${userScore} points.
+                    
+                    ${finalResult}`)
 
 }
