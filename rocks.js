@@ -80,7 +80,7 @@ function getUserChoice() {
             userRPS = "Scissors"
         }
         console.log(userRPS);
-        alert(`Sorry, "${rawInput}" is not a valid weapon! ${userRPS} has been selected for you.`)
+        alert(`"${rawInput}" is not a valid weapon! ${userRPS} has been selected for you.`)
     }
 
     return userRPS
@@ -175,10 +175,27 @@ function game() {
 /* declare variables*/
     let compScore = 0;
     let userScore = 0;
-    let totalRounds = 2
+    let totalRounds;
     let completedRounds;
     let roundResult;
     let finalResult;
+
+    /* requests user input to set number of rounds from 1 to 9 
+    if user enters a value outside this range, or the input isNaN a second prompt is generated
+    if user enters a value out of range again, the function terminates*/
+    totalRounds = parseInt(prompt("Please choose how many rounds you would like to play.  Enter a number between 1 and 9","1"),10)
+
+    if (totalRounds < 1 || totalRounds > 9 || isNaN(totalRounds)) {
+
+        totalRounds = parseInt(prompt(`Numbers can be hard. Would you like to try again? Please enter a number between 1 and 9`,`1`),10); 
+      
+        if (totalRounds < 1 || totalRounds > 9 || isNaN(totalRounds)) {
+
+            alert("I think you did that on purpose. I don't want to play anymore.")
+
+            return
+        }
+    }
 
     for (let i = 0; i < totalRounds; i++) {
 
@@ -205,7 +222,7 @@ function game() {
        /* if the last round was not the final round, provide a score update */
         if (completedRounds < totalRounds) {
 
-            alert(`Score Update - Round ${completedRounds}:
+            alert(`SCORE UPDATE - ROUND ${completedRounds}:
             
                             The computer has ${compScore} points.  
                             You have ${userScore} points.`);
@@ -223,8 +240,8 @@ function game() {
 
     console.log(finalResult); /* log finalResult */
 
-    alert(`FINAL SCORE:
-    
+    alert(`FINAL SCORE - AFTER ${completedRounds} ROUNDS:
+
                     The computer has ${compScore} points.  
                     You have ${userScore} points.
                     
