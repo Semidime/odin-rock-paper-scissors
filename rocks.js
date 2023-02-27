@@ -1,3 +1,10 @@
+
+const userSelectBtns = document.querySelectorAll(".rpsBtn");
+userSelectBtns.forEach(button => button.addEventListener('click', function (e) {
+    /* console.log(button.textContent); */
+    playRound(getComputerChoice(),button.textContent);
+  }))
+
 /* add function getComputerChoice to randomly 
 return a string containing "Rock" "Paper" or 
 "Scissors" */
@@ -16,7 +23,7 @@ function getComputerChoice() {
         compRPS = "Scissors"
     }
 
-    console.log(compRPS); /* debugging */
+    /* console.log(compRPS);  *//* debugging */
 
     return compRPS
 }
