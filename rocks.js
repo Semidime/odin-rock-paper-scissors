@@ -1,13 +1,13 @@
 let compScore = 0;
 let userScore = 0;
 const winningScore = 3;
-
-
-
+const finalResDiv = document.querySelector('.final-res');
+const resultMessage = document.querySelector('.round-res');
+const scorecard = document.querySelector('.scorecard')
 const userSelectBtns = document.querySelectorAll(".rpsBtn");
+
+
 userSelectBtns.forEach(button => button.addEventListener('click', function (e) {
-    /* console.log(button.textContent); */
-    console.log(`Computer:${compScore} | User:${userScore}`);
     if (compScore < winningScore && userScore < winningScore) {
     playRound(getComputerChoice(),button.textContent);
     }
@@ -16,25 +16,19 @@ userSelectBtns.forEach(button => button.addEventListener('click', function (e) {
 /* function to randomly return a string containing "Rock" "Paper" or 
 "Scissors" */
 function getComputerChoice() {
-    let RandomNum = Math.ceil(Math.random()*3);
-   /*  console.log(RandomNum);  */
-
+    let randomNum = Math.ceil(Math.random()*3);
     let compRPS;
 
-    if (RandomNum === 1) {
+    if (randomNum === 1) {
         compRPS = "Rock"
-    } else if (RandomNum === 2) {
+    } else if (randomNum === 2) {
         compRPS = "Paper"
     } else {
         compRPS = "Scissors"
     }
 
-    /* console.log(compRPS);  *//* debugging */
-
     return compRPS
 }
-
-
 
 function playRound(computerSelection, playerSelection) {
 
@@ -67,10 +61,9 @@ function playRound(computerSelection, playerSelection) {
     }
     updateScore(roundResult);
     showRoundRes(computerSelection,playerSelection,roundResult);
-    if (userScore >=winningScore || compScore >= winningScore) showFinalRes();
+    if (userScore >= winningScore || compScore >= winningScore) showFinalRes();
     return
 }
-
 
 function updateScore(roundResult) {
     if (roundResult === "Win") {
@@ -80,13 +73,12 @@ function updateScore(roundResult) {
     } else {
         return;
     }
-   
-    const scorecard = document.querySelector('.scorecard')
+      
     scorecard.textContent = `User: ${userScore} | Computer: ${compScore}`
 }
 
 function showRoundRes(computerSelection,playerSelection,roundResult) {
-    const resultMessage = document.querySelector('.round-res');
+
     if (roundResult ==="Draw") {
         resultMessage.textContent = `You chose ${playerSelection}. The computer also chose ${computerSelection}. The round is drawn!`
     } else if (roundResult ==="Win" && playerSelection === "Scissors") {
@@ -101,7 +93,7 @@ function showRoundRes(computerSelection,playerSelection,roundResult) {
 }
 
 function showFinalRes(){
-    const finalResDiv = document.querySelector('.final-res');
+    
     const finalResHeading = document.createElement('h3');
     const finalResMessage = document.createElement('p');
     const resetButton = document.createElement('button');
@@ -124,13 +116,18 @@ function showFinalRes(){
 
     resetButton.textContent="Play again?";
     finalResDiv.appendChild(resetButton);
-    resetButton.addEventListener('click', function (e) {
-        compScore = 0;
-        userScore = 0;
-        finalResDiv.removeChild(finalResHeading);
-        finalResDiv.removeChild(finalResMessage);
-        finalResDiv.removeChild(resetButton);
-      })
-
+    resetButton.addEventListener('click', function() {
+        resetGame()
+    })
+}
+    
+ function resetGame() {
+    compScore = 0;
+    userScore = 0;
+    while (finalResDiv.firstChild) {
+        finalResDiv.removeChild(finalResDiv.lastChild)
+    }
+    resultMessage.textContent = "";
+    scorecard.textContent = `User: ${userScore} | Computer: ${compScore}`;
 }
 
