@@ -1,9 +1,9 @@
 let compScore = 0;
 let userScore = 0;
 const winningScore = 3;
-const finalResDiv = document.querySelector('.final-res');
-const resultMessage = document.querySelector('.round-res');
-const scorecard = document.querySelector('.scorecard')
+const finalResDiv = document.querySelector('#final-res');
+const resultMessage = document.querySelector('#round-res');
+const scorecard = document.querySelector('#scorecard')
 const userSelectBtns = document.querySelectorAll(".rpsBtn");
 
 
@@ -94,7 +94,7 @@ function showRoundRes(computerSelection,playerSelection,roundResult) {
 
 function showFinalRes(){
     
-    const finalResHeading = document.createElement('h3');
+    const finalResHeading = document.createElement('h1');
     const finalResMessage = document.createElement('p');
     const resetButton = document.createElement('button');
 
