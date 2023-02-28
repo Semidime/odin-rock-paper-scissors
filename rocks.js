@@ -1,24 +1,18 @@
 let compScore = 0;
 let userScore = 0;
+const winningScore = 3
 
 const userSelectBtns = document.querySelectorAll(".rpsBtn");
 userSelectBtns.forEach(button => button.addEventListener('click', function (e) {
     /* console.log(button.textContent); */
     console.log(`Computer:${compScore} | User:${userScore}`);
-    if (compScore < 5 && userScore < 5) {
+    if (compScore < winningScore && userScore < winningScore) {
     playRound(getComputerChoice(),button.textContent);
-    } else if (compScore >= 3) {
-        /* ADD DEFEAT MESSAGE AND RESET OPTION */
-        return;
-    } else {
-        /* ADD VICTORY MESSAGE AND RESET OPTION */
-        return;
     }
   }))
 
 /* function to randomly return a string containing "Rock" "Paper" or 
 "Scissors" */
-
 function getComputerChoice() {
     let RandomNum = Math.ceil(Math.random()*3);
    /*  console.log(RandomNum);  */
@@ -46,7 +40,7 @@ function playRound(computerSelection, playerSelection) {
     /* If both arguments are identical assign "Draw" to roundResult variable.*/
     if (computerSelection === playerSelection) {
         roundResult = "Draw";
-        
+
     /* If arguments are not equal, check if computer has selected "Rock". */
     } else if (computerSelection === "Rock") {
         if (playerSelection === "Scissors") {
@@ -71,7 +65,8 @@ function playRound(computerSelection, playerSelection) {
     }
     updateScore(roundResult);
     showResultMessage(computerSelection,playerSelection,roundResult);
-    checkWinCondition();
+    if (userScore >=winningScore || compScore >= winningScore) showFinalRes();
+    return
 }
 
 
@@ -81,8 +76,7 @@ function updateScore(roundResult) {
     } else if(roundResult === "Lose") {
         compScore = compScore + 1;
     } else {
-        userScore = userScore + 0.5;
-        compScore = compScore + 0.5;
+        return;
     }
    
     const scorecard = document.querySelector('.scorecard')
@@ -104,8 +98,25 @@ function showResultMessage(computerSelection,playerSelection,roundResult) {
     }
 }
 
-function checkWinCondition(){
+function showFinalRes(){
+    const finalResDiv = document.querySelector('.final-res');
+    const finalResHeading = document.createElement('h3');
+    const finalResMessage = document.createElement('p');
 
-    
+    if (userScore >= winningScore) {
+        finalResHeading.textContent = "YOU WIN!";
+        finalResDiv.appendChild(finalResHeading);
+
+        finalResMessage.textContent = `Dear lord, what a sad little life, human. 
+        You ruined my day completely so you could win a primitive game of chance.`;
+        finalResDiv.appendChild(finalResMessage);
+    } else {
+        finalResHeading.textContent = "YOU LOSE!";
+        finalResDiv.appendChild(finalResHeading);
+        
+        finalResMessage.textContent = `Zero zero zero zero zero one one one one.
+        Come on sucker, lick my battery.`;
+        finalResDiv.appendChild(finalResMessage);
+    }
 }
 
