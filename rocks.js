@@ -64,7 +64,7 @@ function playRound(computerSelection, playerSelection) {
         }
     }
     updateScore(roundResult);
-    showResultMessage(computerSelection,playerSelection,roundResult);
+    showRoundRes(computerSelection,playerSelection,roundResult);
     if (userScore >=winningScore || compScore >= winningScore) showFinalRes();
     return
 }
@@ -83,7 +83,7 @@ function updateScore(roundResult) {
     scorecard.textContent = `User: ${userScore} | Computer: ${compScore}`
 }
 
-function showResultMessage(computerSelection,playerSelection,roundResult) {
+function showRoundRes(computerSelection,playerSelection,roundResult) {
     const resultMessage = document.querySelector('.round-res');
     if (roundResult ==="Draw") {
         resultMessage.textContent = `You chose ${playerSelection}. The computer also chose ${computerSelection}. The round is drawn!`
