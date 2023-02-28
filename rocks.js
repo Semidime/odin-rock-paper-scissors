@@ -1,6 +1,8 @@
 let compScore = 0;
 let userScore = 0;
-const winningScore = 3
+const winningScore = 3;
+
+
 
 const userSelectBtns = document.querySelectorAll(".rpsBtn");
 userSelectBtns.forEach(button => button.addEventListener('click', function (e) {
@@ -102,6 +104,7 @@ function showFinalRes(){
     const finalResDiv = document.querySelector('.final-res');
     const finalResHeading = document.createElement('h3');
     const finalResMessage = document.createElement('p');
+    const resetButton = document.createElement('button');
 
     if (userScore >= winningScore) {
         finalResHeading.textContent = "YOU WIN!";
@@ -118,5 +121,16 @@ function showFinalRes(){
         Come on sucker, lick my battery.`;
         finalResDiv.appendChild(finalResMessage);
     }
+
+    resetButton.textContent="Play again?";
+    finalResDiv.appendChild(resetButton);
+    resetButton.addEventListener('click', function (e) {
+        compScore = 0;
+        userScore = 0;
+        finalResDiv.removeChild(finalResHeading);
+        finalResDiv.removeChild(finalResMessage);
+        finalResDiv.removeChild(resetButton);
+      })
+
 }
 
