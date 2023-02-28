@@ -98,22 +98,23 @@ function showFinalRes(){
     const finalResMessage = document.createElement('p');
     const resetButton = document.createElement('button');
 
+    finalResHeading.classList.add('final-res-heading');
+    finalResMessage.classList.add('final-res-message');
+
     if (userScore >= winningScore) {
         finalResHeading.textContent = "YOU WIN!";
-        finalResDiv.appendChild(finalResHeading);
-
         finalResMessage.textContent = `Dear lord, what a sad little life, human. 
         You ruined my day completely so you could win a primitive game of chance.`;
-        finalResDiv.appendChild(finalResMessage);
     } else {
-        finalResHeading.textContent = "YOU LOSE!";
-        finalResDiv.appendChild(finalResHeading);
-        
+        finalResHeading.textContent = "YOU LOSE!";              
         finalResMessage.textContent = `Zero zero zero zero zero one one one one.
         Come on sucker, lick my battery.`;
-        finalResDiv.appendChild(finalResMessage);
+        
     }
 
+    finalResDiv.appendChild(finalResHeading);
+    finalResDiv.appendChild(finalResMessage);
+    
     resetButton.textContent="Play again?";
     finalResDiv.appendChild(resetButton);
     resetButton.addEventListener('click', function() {
