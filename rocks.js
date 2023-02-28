@@ -46,54 +46,32 @@ playerSelection and computerSelection*/
 
 function playRound(computerSelection, playerSelection) {
 
-    let roundResult;
-    const resultMessage = document.querySelector('.round-res');
-
-
+    let roundResult;    
     /* If both arguments are identical assign "Draw" to roundResult variable.  Display message that round is drawn */
     if (computerSelection === playerSelection) {
         roundResult = "Draw";
-        resultMessage.textContent = `The computer chose ${computerSelection}.  You chose ${playerSelection}. The round is drawn!`;
-
-    /* If arguments are not equal, check if computer has selected "Rock".  
-    If computer has selected "Rock", check User selection.  
-    If User has selected "Scissors", assign "Lose" to roundResult variable and display message to notify User of result.  
-    Otherwise User must have selected "Paper". Assign "Win" to roundResult variable  and display message to notify User of result.   */    
+    /* If arguments are not equal, check if computer has selected "Rock". */
     } else if (computerSelection === "Rock") {
         if (playerSelection === "Scissors") {
             roundResult = "Lose";
-            resultMessage.textContent = `The computer chose ${computerSelection}.  You chose ${playerSelection}. You Lose! Rock beats Scissors!`;
         } else {
             roundResult = "Win";
-            resultMessage.textContent = `The computer chose ${computerSelection}.  You chose ${playerSelection}. You Win! Paper beats Rock!`;
         }
-
-    /* If arguments are not equal, and computer did not select "Rock", check if computer has selected "Scissors".  
-    If computer has selected "Scissors", check User selection.  
-    If User has selected "Paper", assign "Lose" to roundResult variable and display message to notify User of result.  
-    Otherwise User must have selected "Rock".  Assign "Win" to roundResult variable  and display message to notify User of result.   */
+    /* If arguments are not equal, and computer did not select "Rock", check if computer has selected "Scissors". */
     } else if (computerSelection === "Scissors") {
         if (playerSelection === "Paper") {
             roundResult = "Lose";
-            resultMessage.textContent = `The computer chose ${computerSelection}.  You chose ${playerSelection}. You Lose! Scissors beat Paper!`;
         } else {
             roundResult = "Win";
-            resultMessage.textContent = `The computer chose ${computerSelection}.  You chose ${playerSelection}. You Win! Rock beats Scissors!`;
         }
-
-    /* If arguments are not equal, and computer did not select "Rock" or "Scissors", computer must have selected "Paper".  
-    Check User selection.  If User has selected "Rock", assign "Lose" to roundResult variable and display message to notify User of result.  
-    Otherwise User must have selected "Scissors".  Assign "Win" to roundResult variable  and display message to notify User of result.    */
+    /* If arguments are not equal, and computer did not select "Rock" or "Scissors", computer must have selected "Paper". */
     } else {
         if (playerSelection === "Rock") {
             roundResult = "Lose";
-            resultMessage.textContent = `The computer chose ${computerSelection}.  You chose ${playerSelection}. You Lose! Paper beats Rock!`;
         } else {
             roundResult = "Win";
-            resultMessage.textContent = `The computer chose ${computerSelection}.  You chose ${playerSelection}. You Win! Scissors beats Paper!`;
         }
     }
-
     updateScore(roundResult);
     showResultMessage(computerSelection,playerSelection,roundResult);
 }
@@ -110,9 +88,23 @@ function updateScore(roundResult) {
     }
    
     const scorecard = document.querySelector('.scorecard')
-    scorecard.textContent = `Computer: ${compScore} | User: ${userScore}`
+    scorecard.textContent = `User: ${userScore} | Computer: ${compScore}`
 
-    checkWinCondition();
+}
+
+function showResultMessage(computerSelection,playerSelection,roundResult) {
+    const resultMessage = document.querySelector('.round-res');
+    if (roundResult ==="Draw") {
+        resultMessage.textContent = `You chose ${playerSelection}. The computer also chose ${computerSelection}. The round is drawn!`
+    } else if (roundResult ==="Win" && playerSelection === "Scissors") {
+        resultMessage.textContent = `You chose ${playerSelection}. The computer chose ${computerSelection}. ${playerSelection} beat ${computerSelection}. You win this round!`
+    } else if (roundResult ==="Win" && playerSelection !== "Scissors") {
+        resultMessage.textContent = `You chose ${playerSelection}. The computer chose ${computerSelection}. ${playerSelection} beats ${computerSelection}. You win this round!`
+    } else if (roundResult ==="Lose" && computerSelection === "Scissors") {
+        resultMessage.textContent = `The computer chose ${computerSelection}. You chose ${playerSelection}. ${computerSelection} beat ${playerSelection}. You lost this round!`    
+    } else {
+        resultMessage.textContent = `The computer chose ${computerSelection}. You chose ${playerSelection}. ${computerSelection} beats ${playerSelection}. You lost this round!`
+    }
 }
 
 function checkWinCondition(){
