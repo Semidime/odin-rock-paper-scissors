@@ -91,6 +91,7 @@ div {
     text-align: center;
     height: 50px;
     padding: 10px;
+    transition: all 2s ease;
 }
 
 #scorecard {
