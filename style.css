@@ -58,6 +58,16 @@ div {
 /*     border: 1px solid black; */
 }
 
+.rps-img {
+    width:165px;
+    height:200px;
+    transition: all 1s ease;
+}
+
+.selected-img {
+    transform: scale(1.1);
+}
+
 .rpsBtn {
 /*     color: red; */
     width: 150px;
