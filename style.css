@@ -6,7 +6,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    font-size: 20px;
+    color: #1f2937;
     line-height: 1.5; 
     min-height: 100vh;
     display: flex;
@@ -18,18 +19,21 @@ button {
     font-weight: bold;
     margin: auto;
     padding: 10px 20px;
+    border: 2px solid black;
     border-radius: 5px;
+    background-color: rgb(239, 255, 17);
 }
 
 div {
-    border: 1px solid red;
+/*     border: 1px solid red; */
     min-height: 20px;
     padding: 10px 0;
 }
 
 .header {
-    height: 75px;
-    padding: 20px;
+    height: 100px;
+    padding: 10px;
+    background-color: rgb(239, 255, 17);
 }
 
 .header-text {
@@ -38,36 +42,51 @@ div {
 
 .btn-container {
     flex-grow: 1;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-wrap: wrap;    
     justify-content: center;
+    gap: 30px;
+    background-color: rgb(239, 255, 17);
+}
+
+.rock-container, .paper-container, .scissors-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+/*     border: 1px solid black; */
 }
 
 .rpsBtn {
-    color: red;
+/*     color: red; */
     width: 150px;
+    transition: all 1s ease;
 }
 
-.user-selection {
-    color: blue;
+.selected {
+    color: #e66d0a;
+    transform: scale(1.1);
+    border-color: #e66d0a;
+    box-shadow: 0 0 1rem #ffc600;
 }
 
 .footer {
-    height: 400px;
+/*     height: 400px; */
     padding: 10px;
+    background-color: rgb(239, 255, 17);
 }
 
 #round-res {
     text-align: center;
-    height: 75px;
-    padding: 20px 20px;
+    height: 50px;
+    padding: 10px;
 }
 
 #scorecard {
     text-align: center;
-    height: 75px;
-    padding: 20px 20px;
+    height: 50px;
+    padding: 10px;
 }
 
 #final-res {
@@ -75,7 +94,6 @@ div {
     display: flex;
     flex-direction: column;    
     justify-content: center;
-    gap: 10px;
 }
 
 .final-res-heading, .final-res-message {

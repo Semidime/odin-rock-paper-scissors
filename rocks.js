@@ -9,9 +9,14 @@ const userSelectBtns = document.querySelectorAll(".rpsBtn");
 
 userSelectBtns.forEach(button => button.addEventListener('click', function (e) {
     if (compScore < winningScore && userScore < winningScore) {
-    playRound(getComputerChoice(),button.textContent);
+        button.classList.add('selected')
+        playRound(getComputerChoice(),button.textContent);
     }
-  }))
+}))
+
+userSelectBtns.forEach(button => button.addEventListener('transitionend', function (e) {
+    button.classList.remove('selected');
+}))
 
 /* function to randomly return a string containing "Rock" "Paper" or 
 "Scissors" */
@@ -74,7 +79,7 @@ function updateScore(roundResult) {
         return;
     }
       
-    scorecard.textContent = `User: ${userScore} | Computer: ${compScore}`
+    scorecard.textContent = `Meatbag: ${userScore} | Robot Overlord: ${compScore}`
 }
 
 function showRoundRes(computerSelection,playerSelection,roundResult) {
@@ -94,7 +99,7 @@ function showRoundRes(computerSelection,playerSelection,roundResult) {
 
 function showFinalRes(){
     
-    const finalResHeading = document.createElement('h1');
+    const finalResHeading = document.createElement('h2');
     const finalResMessage = document.createElement('p');
     const resetButton = document.createElement('button');
 
@@ -129,6 +134,6 @@ function showFinalRes(){
         finalResDiv.removeChild(finalResDiv.lastChild)
     }
     resultMessage.textContent = "";
-    scorecard.textContent = `User: ${userScore} | Computer: ${compScore}`;
+    scorecard.textContent = `Meatbag: ${userScore} | Robot Overlord: ${compScore}`;
 }
 
