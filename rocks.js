@@ -97,8 +97,7 @@ function updateScore(roundResult) {
 }
 
 function showRoundRes(computerSelection,playerSelection,roundResult) {
-    resultMessage.style.transition = "";
-    resultMessage.style.color = "#1f2937";
+
     
     if (roundResult ==="Draw") {
         resultMessage.textContent = `You chose ${playerSelection}. The computer also chose ${computerSelection}. The round is drawn!`
@@ -112,10 +111,6 @@ function showRoundRes(computerSelection,playerSelection,roundResult) {
         resultMessage.textContent = `The computer chose ${computerSelection}. You chose ${playerSelection}. ${computerSelection} beats ${playerSelection}. You lose this round!`
     }
 
-    setTimeout(() => {
-        resultMessage.style.transition = "all 2s ease";
-        resultMessage.style.color = "rgb(239, 255, 17)";
-    }, 2000);
 }
 
 function showFinalRes(){
@@ -135,28 +130,19 @@ function showFinalRes(){
         finalResHeading.textContent = "YOU LOSE!";              
         finalResMessage.textContent = `Zero zero zero zero zero one one one one.
         Come on sucker, lick my battery.`;
-        
     }
 
-    resultMessage.remove();
-    
-    finalResDiv.appendChild(finalResHeading);
-    finalResDiv.appendChild(finalResMessage);
-    
-    resetButton.textContent="Play again?";
-    finalResDiv.appendChild(resetButton);
-    resetButton.addEventListener('click', function() {
-        location.reload()
-    })
+    resultMessage.style.transition = "all 4s ease";
+    resultMessage.style.color = "rgb(239, 255, 17)";
+
+
+    setTimeout(() => {
+        finalResDiv.appendChild(finalResHeading);
+        finalResDiv.appendChild(finalResMessage);
+        resetButton.textContent="Play again?";
+        finalResDiv.appendChild(resetButton);       
+        resetButton.addEventListener('click', function() {
+            location.reload()
+        })
+    }, 2000);
 }
-    
-/*  function resetGame() {
-    compScore = 0;
-    userScore = 0;
-    while (finalResDiv.firstChild) {
-        finalResDiv.removeChild(finalResDiv.lastChild)
-    }
-    resultMessage.textContent = "";
-    scorecard.textContent = "";
-}
- */
