@@ -111,7 +111,7 @@ div {
     justify-content: center;
 }
 
-.final-res-heading, .final-res-message, {
+.final-res-heading, .final-res-message {
     text-align: center;
     padding-left: 20px;
     padding-right: 20px;
