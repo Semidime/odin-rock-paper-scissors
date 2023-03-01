@@ -19,7 +19,7 @@ button {
     font-weight: bold;
     margin: auto;
     padding: 10px 20px;
-    border: 2px solid black;
+    border: 2px solid #1f2937;
     border-radius: 5px;
     background-color: rgb(239, 255, 17);
 }
@@ -111,7 +111,7 @@ div {
     justify-content: center;
 }
 
-.final-res-heading, .final-res-message {
+.final-res-heading, .final-res-message, {
     text-align: center;
     padding-left: 20px;
     padding-right: 20px;
