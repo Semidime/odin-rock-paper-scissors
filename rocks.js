@@ -9,14 +9,30 @@ const userSelectBtns = document.querySelectorAll(".rpsBtn");
 
 userSelectBtns.forEach(button => button.addEventListener('click', function (e) {
     if (compScore < winningScore && userScore < winningScore) {
-        button.classList.add('selected')
+        button.classList.add('selected');
+        addSelectedRpsImg(button.textContent);
         playRound(getComputerChoice(),button.textContent);
     }
 }))
 
 userSelectBtns.forEach(button => button.addEventListener('transitionend', function (e) {
+    if (e.propertyName !== 'transform') return;
+    removeSelectedRpsImg(button.textContent);
     button.classList.remove('selected');
 }))
+
+function addSelectedRpsImg (rps) {
+    const rpsImageID = rps+"-img";
+    const rpsImage = document.querySelector(`#${rpsImageID}`);
+    rpsImage.classList.add('selected-img');
+}
+
+function removeSelectedRpsImg (rps) {
+    const rpsImageID = rps+"-img";
+    const rpsImage = document.querySelector(`#${rpsImageID}`);
+    rpsImage.classList.remove('selected-img');
+}
+
 
 /* function to randomly return a string containing "Rock" "Paper" or 
 "Scissors" */
