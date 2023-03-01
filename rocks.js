@@ -91,8 +91,6 @@ function updateScore(roundResult) {
         userScore = userScore + 1;
     } else if(roundResult === "Lose") {
         compScore = compScore + 1;
-    } else {
-        return;
     }
       
     scorecard.textContent = `Meatbag: ${userScore} | Robot Overlord: ${compScore}`
