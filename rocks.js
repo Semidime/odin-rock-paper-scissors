@@ -7,6 +7,8 @@ const scorecard = document.querySelector('#scorecard')
 const userSelectBtns = document.querySelectorAll(".rpsBtn");
 
 
+/* event listeners attached to each rps button.
+on click calls playRound(), and adds selected class to chosen button and calls addSelectedRpsImg */
 userSelectBtns.forEach(button => button.addEventListener('click', function (e) {
     if (compScore < winningScore && userScore < winningScore) {
         button.classList.add('selected');
@@ -15,18 +17,21 @@ userSelectBtns.forEach(button => button.addEventListener('click', function (e) {
     }
 }))
 
+/* removes selected class from rps button and calls removeSelectedRpsImg after transition has completed */
 userSelectBtns.forEach(button => button.addEventListener('transitionend', function (e) {
     if (e.propertyName !== 'transform') return;
     removeSelectedRpsImg(button.textContent);
     button.classList.remove('selected');
 }))
 
+/* adds selected-img class to rps image */
 function addSelectedRpsImg (rps) {
     const rpsImageID = rps+"-img";
     const rpsImage = document.querySelector(`#${rpsImageID}`);
     rpsImage.classList.add('selected-img');
 }
 
+/* removes selected-img class from rps image */
 function removeSelectedRpsImg (rps) {
     const rpsImageID = rps+"-img";
     const rpsImage = document.querySelector(`#${rpsImageID}`);
@@ -34,7 +39,7 @@ function removeSelectedRpsImg (rps) {
 }
 
 
-/* function to randomly return a string containing "Rock" "Paper" or 
+/* randomly returns a string containing "Rock" "Paper" or 
 "Scissors" */
 function getComputerChoice() {
     let randomNum = Math.ceil(Math.random()*3);
@@ -51,6 +56,10 @@ function getComputerChoice() {
     return compRPS
 }
 
+/* playRound checks the arguments passed to it 
+assigns the result of the round to roundResult variable
+calls updateScore() and showRoundRes()
+if userScore or compScore is greater than or equal to winningScore calls showFinalRes() */
 function playRound(computerSelection, playerSelection) {
 
     let roundResult;    
@@ -86,6 +95,7 @@ function playRound(computerSelection, playerSelection) {
     return
 }
 
+/* updates userScore and compScore after each round, publishes updated score to scorecard */
 function updateScore(roundResult) {
     if (roundResult === "Win") {
         userScore = userScore + 1;
@@ -96,6 +106,7 @@ function updateScore(roundResult) {
     scorecard.textContent = `Meatbag: ${userScore} | Robot Overlord: ${compScore}`
 }
 
+/* shows outcome of each round.  publishes result of round to resultMessage */
 function showRoundRes(computerSelection,playerSelection,roundResult) {
 
     
@@ -113,6 +124,11 @@ function showRoundRes(computerSelection,playerSelection,roundResult) {
 
 }
 
+/* called when compScore or userScore equal to winningScore
+fades out most recent roundResult
+adds a heading declaring a winner
+adds a paragraph with a final result message
+adds button to reload page */
 function showFinalRes(){
     
     const finalResHeading = document.createElement('h2');
