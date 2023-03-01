@@ -138,17 +138,19 @@ function showFinalRes(){
         
     }
 
+    resultMessage.remove();
+    
     finalResDiv.appendChild(finalResHeading);
     finalResDiv.appendChild(finalResMessage);
     
     resetButton.textContent="Play again?";
     finalResDiv.appendChild(resetButton);
     resetButton.addEventListener('click', function() {
-        resetGame()
+        location.reload()
     })
 }
     
- function resetGame() {
+/*  function resetGame() {
     compScore = 0;
     userScore = 0;
     while (finalResDiv.firstChild) {
@@ -157,4 +159,4 @@ function showFinalRes(){
     resultMessage.textContent = "";
     scorecard.textContent = "";
 }
-
+ */
