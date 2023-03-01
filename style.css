@@ -85,13 +85,16 @@ div {
     height: 350px;
     padding: 10px;
     background-color: rgb(239, 255, 17);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #round-res {
     text-align: center;
     height: 50px;
     padding: 10px;
-    transition: all 2s ease;
+/*     transition: all 2s ease; */
 }
 
 #scorecard {
@@ -102,6 +105,7 @@ div {
 
 #final-res {
     height: 200px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;    
     justify-content: center;
